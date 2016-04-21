@@ -23,7 +23,7 @@ public class RaspberrySchedule {
 		int hour = cal.get(Calendar.HOUR_OF_DAY);
 		int minute = cal.get(Calendar.MINUTE);
 		
-		if((this.startHour <= hour && this.startMinute <= minute) && (hour < this.endHour && minute < this.endMinute))
+		if((this.startHour <= hour && this.startMinute <= minute) && (hour <= this.endHour && minute < this.endMinute))
 		{
 			return true;
 		}

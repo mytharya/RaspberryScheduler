@@ -3,10 +3,6 @@ package raspberryScheduler;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,6 +46,10 @@ public class RaspberryScheduler {
 		if(errorFound == false)
 		{
 			errorFound = readSettingsFile();
+			if(RaspberrySchedulerSettings.DEBUG == true)
+			{
+				printSchedules();
+			}
 		}
 
 		if(errorFound == false)
@@ -91,7 +91,7 @@ public class RaspberryScheduler {
 		    	{
 		    		if(startFound == false)
 		    		{
-		    			printMessage("");
+		    			printMessage("GPIO schedule end marker was found but no start marker was found.");
 		    		}
 		    		
 		    		startFound = false;
@@ -154,7 +154,27 @@ public class RaspberryScheduler {
 		{
 			if(settingsFile.lastModified() != settingsFileTimeStamp)
 			{
-				if(readSettingsFile() == true)
+				for (RaspberryGPIO gpioPin : GPIOMap.values()) {
+					gpioPin.unInitPin(controller);
+				}
+				
+				GPIOMap.clear();
+				
+				int retry = 3;
+				boolean errorFound = false;
+				
+				while(retry > 0)
+				{
+					errorFound = readSettingsFile();
+					if(errorFound == false)
+					{
+						break;
+					}
+					
+					retry--;
+				}
+				
+				if(errorFound == true)
 				{
 					printMessage("Setting file modified but could not be read.");
 					break;
@@ -164,6 +184,11 @@ public class RaspberryScheduler {
 			for (RaspberryGPIO raspberryGPIO : GPIOMap.values()) {
 				
 				raspberryGPIO.checkSchedule();
+			}
+			
+			try {
+				Thread.sleep(1000);
+			} catch (Exception e) {
 			}
 		}
 	}
@@ -192,15 +217,7 @@ public class RaspberryScheduler {
 		
 		if(RaspberrySchedulerSettings.PRINT_TO_LOG)
 		{
-			appendToLog(message);
-		}
-	}
-	
-	private void appendToLog(String message)
-	{
-		try {
-		    Files.write(Paths.get(RaspberrySchedulerSettings.LOG_FILE_NAME), message.getBytes(), StandardOpenOption.APPEND);
-		}catch (IOException e) {
+			RaspberrySchedulerSettings.appendToLog(message + "\n");
 		}
 	}
 	
@@ -565,5 +582,12 @@ public class RaspberryScheduler {
 		}	
 		
 		return null;
+	}
+	
+	private void printSchedules()
+	{
+		for (RaspberryGPIO gpio : GPIOMap.values()) {
+			gpio.printSchedules();
+		}
 	}
 }
