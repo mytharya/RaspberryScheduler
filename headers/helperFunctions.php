@@ -1,4 +1,6 @@
 <?php
+    $nl = "<br />";
+
     function addition($number1, $number2)
     {       
         $answer = $number1 + $number2;
@@ -12,7 +14,14 @@
 
     function showSystemSettings()
     {
-        echo $_SERVER['SCRIPT_NAME'];
-        // echo $_SERVER['HTTP_HOST'];
+        global $nl;
+        echo $_SERVER['SCRIPT_NAME'].$nl;
+        echo $_SERVER['HTTP_HOST'].$nl;
+    }
+
+    function getImageFolderLocation()
+    {
+        $temp = $_SERVER['HTTP_HOST'];
+        return $temp.'/images';
     }
 ?>

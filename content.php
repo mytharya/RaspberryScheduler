@@ -1,7 +1,5 @@
 <?php
     require 'headers/helperFunctions.php';
-    
-    $nl = "<br />";
 
     // each statement must end in semicolon
     echo "alfa\n";
@@ -143,6 +141,24 @@
     echo "Sum of $value3 and $value4 is :$returnValue$nl";
 
     //predefined variables
-    echo $_SERVER['SCRIPT_NAME'].$nl;
-    showFunctionLocation();
+    // echo $_SERVER['SCRIPT_NAME'].$nl;
+    // showSystemSettings();
+
+    function showAppleImage()
+    {
+        $dir = getImageFolderLocation();
+        $file = "apple.jpg";
+        
+        // echo $dir.'/'.$file;
+
+        echo '<img src="'.$dir.'/'.$file.'" alt="'.$file.'">';
+    }
+
+    showAppleImage();
 ?>
+
+<form action="form.php" method="post">
+    <p>Name: <input type="text" name="name" /></p>
+    <p>Age: <input type="text" name="age" /></p>
+    <p><input type="submit" name="submit" value="Submit" /></p>
+  </form>
