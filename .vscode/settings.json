@@ -39,5 +39,8 @@
         "d": "cd $dir && dmd $fileName && $dir$fileNameWithoutExt",
         "haskell": "runhaskell",
         "nim": "nim compile --verbosity:0 --hints:off --run"
-    }
+    },
+    "php.suggest.basic": false,
+    "php.validate.executablePath": "c:\\wamp64\\bin\\php\\php7.0.23\\php.exe",
+    "php.executablePath": "c:\\wamp64\\bin\\php\\php7.0.23\\php.exe",
 }
