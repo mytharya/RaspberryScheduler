@@ -41,8 +41,8 @@ class Savings(Account):
 Z = Current ("Ziyad", 500)
 T = Savings ("Tom",300)
 known_accounts = {
-    "Ziyad":["Current", 500],
-    "Tom":["Savings",300],
+    "Ziyad":("Current", 500),
+    "Tom":("Savings",300),
     }
 """
 print()
@@ -50,6 +50,7 @@ print(Z)
 print(T)
 print()
 """
+
 while True:
     print()
     account_name = input("Select account you wish to operate : ").strip()
@@ -88,13 +89,19 @@ while True:
             print("4 to EXIT")
             print("any other choice returns you to account selection")
             print()
+            
 
             menu_option = int(input("Please choose option : ").strip())
             
             if menu_option == 2:
                 print()
                 deposit_amount = int(input("Enter the ammount you wish to deposit : ").strip())
+                print(known_accounts)
+                print(account_name)
+                print(deposit_amount)
+                print(account_name)
                 known_accounts[account_name].deposit(deposit_amount)
+                #'account_name'.deposit(deposit_amount)
             elif menu_option == 3:
                 print()
                 withdraw_ammount = int(input("Enter the ammount you wish to withdraw : ").strip())
@@ -107,5 +114,7 @@ while True:
                 #print()
                 #print(known_accounts)
                 print()
+            elif menu_option == 4:
+                print("doesent work for the moment ")
             else:
                 break
