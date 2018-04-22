@@ -80,11 +80,33 @@ def getAccountByName(name):
     return None
 
 #Global variables
-known_accounts = [Savings("Alfa", 300),Current("Gama", 500)]
+known_accounts = []
 
-print("\n"*20)
+#read from file
+with open('10_70_bank.txt', 'r') as f:
+    for line in enumerate(f):
+        #select corect info
+        account_data_raw = line[1]
+        #strip line endings \n and spaces
+        account_data_raw = account_data_raw.strip() #or print(str(line[1]).strip())
+        account_data_raw = account_data_raw.split(",")
+        #converting to proper types
+        account_data_raw[0] = str(account_data_raw[0])
+        account_data_raw[1] = int(account_data_raw[1])
+        account_data_raw[2] = int(account_data_raw[2])
+        #if account_data_raw aka minimum balance >= 0 thats why is Savings, else is Current
+        if account_data_raw[2] >= 0:
+            #all in one line
+            known_accounts.append(Savings (account_data_raw[0], account_data_raw[1]))
+        else:
+            #all in multiple lines
+            account_name = account_data_raw[0]
+            account_ammount = account_data_raw[1]
+            imported_account = Current (account_name, account_ammount)
+            known_accounts.append(imported_account)
 
 while True:
+    print("\n"*20)
     selection = input("\n 1. Open new account\n 2. Manage existing account\n 3. Delete existing account\n 4. EXIT \n\n Your selection?: ")
     try:
         selection = int(selection)
@@ -106,7 +128,7 @@ while True:
                 new_account_q = str(input("\n Open new account? ")).strip().capitalize()
                 if new_account_q == "Y":
                     while True:
-                        new_account_type = int(input("\n 1 for Current\n 2 for Savings\n 3 for Exit: "))
+                        new_account_type = int(input("\n 1 for Current \n 2 for Savings \n 3 for Exit: \n Your selection?: "))
                         if new_account_type == 1:       #1 for Current
                             new_account_sum = int(input("\n Add a sum you wish to deposit: "))
                             new_account = Current (new_account_name, new_account_sum)
@@ -129,9 +151,8 @@ while True:
                     print("\n Exit din new account ")
                     break
     elif selection == 2:    #2. Manage existing account
-        while True:
             #print all acounts
-            print("\n")
+            print("\n"*20)
             printAllAccounts()
 
             #ask new account name
@@ -155,11 +176,11 @@ while True:
                 while True:
                     
                     #prints account info
-                    print("\n")
+                    print("\n"*20)
                     printAccountInfoByName(account_name)
 
                     #selection menu
-                    selection = input("\n 1. Deposit \n 2. Withdraw \n 3. EXIT \n Your selection is: ")
+                    selection = input("\n 1. Deposit \n 2. Withdraw \n 3. EXIT \n Your selection?: ")
 
                     #re-try until input is int and save it as int
                     #try/exept block for exceptions
@@ -192,9 +213,9 @@ while True:
 
                     if selection == 3:      #3. EXIT
                         break
-                break
+
     elif selection == 3:    #3. Delete Account
-        print("\n")
+        print("\n"*20)
         printAllAccounts()
         if len(known_accounts) >= 1:
             account_name = input("\n Select a account name from list: ").strip().capitalize()
@@ -217,5 +238,10 @@ while True:
             print("Account list is empty! ")
 
     elif selection == 4:    #4. EXIT
-        print("==3")
+        #save to file    
+        text_file = open("10_70_bank.txt", "w")
+        for person in known_accounts:
+            text_file.write("{}".format(person.name + "," + str(person.balance) + "," + str(person.min_balance) + "\n"))
+        text_file.close()
+        print("\n dead end \n\n eop (end of program)")
         break

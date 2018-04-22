@@ -1,0 +1,24 @@
+{
+    "0": [
+        {
+            "StartTime": "16:20",
+            "StopTime": "16:30"
+        },
+        {
+            "StartTime": "20:00",
+            "StopTime": "21:00"
+        }
+    ],
+    "1": [
+        {
+            "StartTime": "16:40",
+            "StopTime": "16:50"
+        }
+    ],
+    "2": [
+        {
+            "StartTime": "15:20",
+            "StopTime": "16:30"
+        }
+    ]
+}
