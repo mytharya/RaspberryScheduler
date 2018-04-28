@@ -2,7 +2,9 @@ import time
 from datetime import datetime
 import json
 
-#globla functions
+pin_settings = None
+
+#global functions
 def setPinUP(pin_id):
     print(str(pin_id) + " is UP")
 
@@ -12,13 +14,22 @@ def setPinDown(pin_id):
 def readDataFromfile():
     with open('pinSettings.txt') as json_file:  
         pin_settings = json.load(json_file)
-        print(pin_settings)
-    '''
-    for pin in pin_settings:
-        print('StartTime: ' + pin['StartTime'])
-        print('StopTime: ' + pin['StopTime'])
-        print('')
-    '''
+        print(type(pin_settings))
+        '''
+        pin = '0'
+        for times in pin_settings[pin]:
+            print('StartTime: ' + times['StartTime'])
+            print('StopTime: ' + times['StopTime'])
+            print('')
+        '''
+
+def saveDataToFile():
+    with open('pinSettingsX.txt', 'w') as json_file:  
+        json.dump(pin_settings, json_file, indent=4)
+'''
+functie care printeaza timpi pinilor start/stop
+compare date-time
+'''
 '''
 #create pin initial data
 pin_settings = {}  
@@ -47,22 +58,33 @@ with open('pinSettings.txt', 'w') as outfile:
 '''
 #start main program
 print("\n"*20)
+
 count = 0
+
+readDataFromfile()
+
 while True:
-    print(datetime.now().time())
+    print("\n" + str(datetime.now().time()))
     
     """
     Pin_Id
     [Timp_start, Timp_stop]
     """
-    readDataFromfile()
     setPinUP(count)
     time.sleep(1)
     setPinDown(count)
+    #pin_settings[count].append({'StartTime : {}'.format(str(datetime.now().time()),)})
+    #pin_settings[count].append('is it working?')
+    #print(pin_setting)
+    print(type(pin_settings))
 
     #exit condition
-    if count == 1:
-        print("Am ajuns la:", count)
+    if count == 2:
+        print("\nAm ajuns la:", count)
+        #print(pin_settings(count))
+        #print(pin_settings())
+
+        #saveDataToFile()
         break
     else:
         count = count + 1
