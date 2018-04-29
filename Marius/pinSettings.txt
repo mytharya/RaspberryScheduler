@@ -5,6 +5,10 @@
             "StopTime": "16:30"
         },
         {
+            "StartTime": "15:00",
+            "StopTime": "16:00"
+        },
+        {
             "StartTime": "20:00",
             "StopTime": "21:00"
         }
