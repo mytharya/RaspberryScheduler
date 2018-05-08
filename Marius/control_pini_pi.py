@@ -16,10 +16,13 @@ def setPinDown(pin_id):
     print(str(pin_id) + " is DOWN")
     currentPinStatus[pin_id] = False
 
-def getPinStatus(pin_id)
+def getPinStatus(pin_id):
     global currentPinStatus
-    
-    return currentPinStatus
+    return currentPinStatus[pin_id]
+
+def initPinStatus():
+    for key in pin_settings.keys():
+        currentPinStatus[key] = False
 
 def readDataFromfile():
     global pin_settings
@@ -46,35 +49,37 @@ def ConvertStringTimeToMinutes(timeInString):
 #start main program
 print("\n"*20)
 
-count = 0
-
 readDataFromfile()
+initPinStatus()
 
-print("\n" + str(datetime.now().strftime("%H:%M")))
-        
-#setPinUP(count)
-#time.sleep(1)
-#setPinDown(count)
+while True:
 
-now = datetime.now().time()
-nowInMinutes = now.hour * 60 + now.minute
+    readDataFromfile()
 
-for key in pin_settings.keys():
-    print("\nWorking with pin no: " + key)
+    print("\n" + str(datetime.now().strftime("%H:%M")))
+    
+    now = datetime.now().time()
+    nowInMinutes = now.hour * 60 + now.minute
 
-    isSetPinUp = False
+    for key in pin_settings.keys():
+        print("\nWorking with pin no: " + key)
 
-    for orar in pin_settings[key]:
-        
-        timeStartMin = ConvertStringTimeToMinutes(orar["StartTime"])
-        timeStopMin = ConvertStringTimeToMinutes(orar["StopTime"])
+        isSetPinUp = False
 
-        if((timeStartMin <= nowInMinutes) and (nowInMinutes < timeStopMin)):
-            isSetPinUp = True
-            break
+        for orar in pin_settings[key]:
+            
+            timeStartMin = ConvertStringTimeToMinutes(orar["StartTime"])
+            timeStopMin = ConvertStringTimeToMinutes(orar["StopTime"])
 
-    if(isSetPinUp == True):
-        if setPinUP = False:
-            setPinUP(key)
-    else:
-        setPinDown(key)
+            if((timeStartMin <= nowInMinutes) and (nowInMinutes < timeStopMin)):
+                isSetPinUp = True
+                break
+
+        if (isSetPinUp == True):
+            if (getPinStatus(key) == False):
+                setPinUP(key)
+
+        else:
+            if (getPinStatus(key) == True):
+                setPinDown(key)
+    time.sleep(1)
