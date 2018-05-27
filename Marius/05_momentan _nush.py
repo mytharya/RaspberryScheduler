@@ -36,7 +36,7 @@ class Produs(Client):
         self.weight = greutate
         self.defekt = defect
 
-    def adaugaProdus(self):
+    def adaugaProdus(self, produs, greutate, defect):
         Client.listeazaClientii()
         intrebare = "Introdu ID-ul clientului caruia doresti sa ii adaugi produsul: "
         eroare = "Valoarea introdusa nu e un ID"
@@ -44,7 +44,7 @@ class Produs(Client):
             int_input = self.askIntegerInput(intrebare, eroare)
             if int_input in baza_de_date:
                 print("NR existent")
-                baza_de_date[int_input].append("new")
+                baza_de_date[int_input][new] = Produs(self.product)
                 break
             else:
                 print("NR Inexistent")
