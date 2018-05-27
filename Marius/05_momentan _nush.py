@@ -3,20 +3,32 @@ from random import randint
 baza_de_date = {}
 
 def unique_id():
-    identificator_unic = randint(0,1000)
-    return identificator_unic
+    if len(baza_de_date.keys()) < 1000:
+        while True:
+            identificator_unic = randint(0,1000)
+            if identificator_unic not in baza_de_date:
+                return identificator_unic
+    else:
+        return None
 
 class Client:
     def __init__(self, nume, prenume):
         self.first_name = nume
         self.last_name = prenume
     
-    def adaugaClient(self, nume, prenume):
-        baza_de_date[unique_id()] = {}
+    def adaugaClient(self):
+        if unique_id != None:
+            baza_de_date[unique_id()] = client_nou
+        else:
+            print("Prea multi clienti!")
     
-    def listeazaClientii(self):
-        for any_key in baza_de_date:
-            print("ID: {}, Nume: {}, Prenume: {}".format(any_key, self.first_name, self.last_name))
+    def listeazaClientii():
+        for any_key in baza_de_date.keys():
+            print("ID: {}, Nume: {}, Prenume: {}".format(any_key, baza_de_date[any_key].first_name, baza_de_date[any_key].last_name))
+    
+    # def listeazaClientii(self):
+    #     for any_key in baza_de_date:
+    #         print("ID: {}, Nume: {}, Prenume: {}".format(any_key, self.first_name, self.last_name))
 
 class Produs(Client):
     def __init__(self, produs, greutate, defect):
@@ -24,12 +36,37 @@ class Produs(Client):
         self.weight = greutate
         self.defekt = defect
 
-# main prog
-client_nou = Client("Mike", "Kowalsky")
-produs_nou = Produs("Handy", 350, "ecran spart")
+    def adaugaProdus(self):
+        Client.listeazaClientii()
+        intrebare = "Introdu ID-ul clientului caruia doresti sa ii adaugi produsul: "
+        eroare = "Valoarea introdusa nu e un ID"
+        while True:
+            int_input = self.askIntegerInput(intrebare, eroare)
+            if int_input in baza_de_date:
+                print("NR existent")
+                baza_de_date[int_input].append("new")
+                break
+            else:
+                print("NR Inexistent")
 
-# baza_de_date.listeazaClientii()
-# baza_de_date.adaugaClient()
-baza_de_date.adaugaClient("a","b")
-client_nou.listeazaClientii()
-print(baza_de_date)
+    def askIntegerInput(self, intrebare, eroare):
+        while True:
+            int_input = input(intrebare).strip()
+            try:
+                int_input = int(int_input)
+                return int_input
+            except ValueError:
+                print(eroare)
+
+# main prog
+print("\n"*20)
+client_nou = Client("Mike", "Wazowski")
+client_nou.adaugaClient()
+client_nou = Client("Rany","Dandy")
+client_nou.adaugaClient()
+client_nou = Client("James","Sullivan")
+client_nou.adaugaClient()
+produs_nou = Produs("Handy", 350, "ecran spart")
+produs_nou.adaugaProdus()
+
+Client.listeazaClientii()
