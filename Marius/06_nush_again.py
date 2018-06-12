@@ -25,12 +25,13 @@ class Magazin:
         # ambele procedee sunt corecte
         # client_nou = Client(nume, prenume)
         # self.lista_clienti.append(client_nou)
+        # vs
         self.lista_clienti.append(Client(nume, prenume))
 
     def printListaClienti(self):
         for client in self.lista_clienti:
             if isinstance(client, Client):
-                Client.printInfo()
+                Client.printInfo(client)
     
     def alegeClient(self, nume, prenume):
         for client in self.lista_clienti:
@@ -46,11 +47,14 @@ class Perie:
 clearScreen()
 
 shop = Magazin("ButiQ")
-shop.adaugaClient("e","f")
+# shop.adaugaClient("e","f")
+Magazin("ButiQ").adaugaClient("e","f")
 # shop.adaugaClient("a","b")
 # shop.adaugaClient("c","d")
 shop.lista_clienti.append(Perie("7 cm"))
 client_ales = shop.alegeClient("e","f")
-piaptan = Perie(10)
+print(client_ales)
+piaptan = Perie
 client_ales.adaugaObiect(piaptan)
+# Magazin("ButiQ").alegeClient("e","f").adaugaObiect(piaptan)
 shop.printListaClienti()
