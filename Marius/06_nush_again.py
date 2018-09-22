@@ -44,6 +44,7 @@ class Perie:
         self.lenght = lungime
 
 # main prog
+# screen cleaner
 clearScreen()
 
 shop = Magazin("ButiQ")
@@ -54,7 +55,7 @@ Magazin("ButiQ").adaugaClient("e","f")
 shop.lista_clienti.append(Perie("7 cm"))
 client_ales = shop.alegeClient("e","f")
 print(client_ales)
-piaptan = Perie
+piaptan = Perie(10)
 client_ales.adaugaObiect(piaptan)
 # Magazin("ButiQ").alegeClient("e","f").adaugaObiect(piaptan)
 shop.printListaClienti()
