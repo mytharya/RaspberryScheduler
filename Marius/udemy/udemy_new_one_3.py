@@ -19,7 +19,7 @@ print(len(contacts))
 contacts['Tony'] = '555-0570'
 print(len(contacts))
 print(contacts)
-# remove variables from dictionary
+# remove/delete variables from dictionary
 print(contacts)
 del contacts['Jason']
 print(contacts)
@@ -51,9 +51,18 @@ contacts['Spock'] = {'phone':'555-0555', 'email':'q@q.com'}
 print(contacts)
 print(contacts['Spock'])
 for contact in contacts:
+    print('_' * 100)
     print("{}'s contact info: ".format(contact))
-    #print(contacts[contact])
-    if phone, email in contacts.items():
-        print(contacts[contact]['phone'])
-        print(contacts[contact]['email'])
-#
+    try:
+        if 'phone' or 'email' in contacts.items():
+            print(contacts[contact]['phone'])
+            print(contacts[contact]['email'])
+    except:
+        print('{} doesent have a phone or a email.'.format(contact))
+print('_' * 100)
+for contact in contacts.items():
+    print (contact)
+    #print ('{} has these: {}'.format(contact, contacts[contact]))
+#if value in contacts.values():
+#    print(value)
+

@@ -1,0 +1,8 @@
+linia 1
+linia 2
+linia 3
+linia 4
+This is smtg the it should go into the file.
+Here's more.
+This is smtg that it should go into the file.
+Here's more.
