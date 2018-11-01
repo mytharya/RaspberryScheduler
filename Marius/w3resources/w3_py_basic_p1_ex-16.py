@@ -12,19 +12,30 @@ def ask4input(place):
         except:
             print('NO NO NO sir! thats not descifrable')
 
-for key in values:
-    ask4input(key)
-    values[key] = value
+def program_start():
+    for key in values:
+        ask4input(key)
+        values[key] = value
 
-def all_keys_in_dict():
+def get_all_keys_in_dict():
+    global keyz
     keyz = list(values.keys())
     # print(keyz)
+    # return keyz
 
-all_keys_in_dict
-print(values(keyz(0)))
+def compare_values():
+    if values[keyz[0]] > values[keyz[0+1]]:
+        return values[keyz[0]] - values[keyz[0+1]]
+    else:
+        return values[keyz[0+1]] - values[keyz[0]]
 
-# def compare_values():
-#     for key in values:
-#         values[keyz[0]] <
+def print_result(result):
+    print(result)
+
+program_start()
+get_all_keys_in_dict()
+print_result(compare_values())
+
+# print(diff)
 
 print('meh!')
