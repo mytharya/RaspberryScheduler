@@ -29,9 +29,9 @@ def compare_values_of_dict():
     else:
         return values[keyz[0]] + values[keyz[1]] + values[keyz[2]]
 
-print values.keys()
-print values.values()
-print values.items()
+# print values.keys()
+# print values.values()
+# print values.items()
 
 # print(len(values))
 # print(len(values.keys()))
@@ -41,8 +41,6 @@ print values.items()
 #     print(key[])
 #     if 0 < key and key < len(values):
 #         print(key)
-
-
 
 place_holder()
 # print(type(values.keys()))
@@ -63,9 +61,7 @@ print(compare_values_of_dict())
 #     kk += 1
 #     print(values[keyz[0]])
 
-
 # for keyxx in values.keys():
 #     print(keyxx)
-
 
 print('wait! is it k?')
