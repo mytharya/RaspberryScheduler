@@ -11,11 +11,16 @@ def ask4input():
         except:
             print("oh noes! noes vowels for yous!")
 
+def compare_input(value):
+    nv = value[0] + value[1]
+    # print(nv.lower())
+    if nv.lower() == 'is':
+        print('YouZ gotZ BIG "IsZ" in textZ and is the 1st word!')
+    else:
+        new_value = 'Is ' + value
+        print(new_value)
+
 ask4input()
-if 'Is' in value:
-    print ('There is not "Is" in!')
-else:
-    new_value = 'Is ' + value
-
-
-print(new_value)
+# print('value: ',value)
+compare_input(value)
+# print(type(value))
