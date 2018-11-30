@@ -37,6 +37,9 @@ else:
         else:
             continue
 
+while ((alfa = ask4input('test')) == False):
+    x = alfa;
+
 # print(a4i)
 
 for item in range(1, int(times)+1):
