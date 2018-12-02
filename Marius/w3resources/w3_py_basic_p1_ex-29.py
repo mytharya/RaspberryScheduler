@@ -13,6 +13,8 @@ import timeit
 
 # color1 = temp1 = list(range(100))
 # color2 = [i * 2 for i in range(50)]
-init = 'temp1 = list(range(100)); temp2 = [i * 2 for i in range(50)]'
+# init = temp1 = list(range(100)); temp2 = [i * 2 for i in range(50)]
+temp1 = list(range(99))
+temp2 = [i * 2 for i in range(50)]
 
-print timeit.timeit(temp1.difference(temp2))
+print (timeit.timeit(temp2.difference(temp1)))

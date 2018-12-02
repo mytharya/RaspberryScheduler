@@ -37,7 +37,8 @@ else:
         else:
             continue
 
-while ((alfa = ask4input('test')) == False):
+while ((alpha = ask4input('test')) == False):
+    # print("it worked")
     x = alfa;
 
 # print(a4i)
